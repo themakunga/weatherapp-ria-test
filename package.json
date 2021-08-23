@@ -7,7 +7,7 @@
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
-    "lint:js": "eslint --ext \".js,.vue\" --ignore-path .gitignore .",
+    "lint:js": "eslint --ext \".ts,.vue\" --ignore-path .gitignore .",
     "lint": "yarn lint:js",
     "test": "jest"
   },
@@ -37,7 +37,6 @@
     "@typescript-eslint/eslint-plugin": "^4.29.2",
     "@typescript-eslint/parser": "^4.29.2",
     "@vue/test-utils": "^1.2.1",
-    "babel-core": "7.0.0-bridge.0",
     "babel-jest": "^27.0.5",
     "consola": "^2.15.3",
     "eslint": "^7.29.0",
@@ -55,9 +54,5 @@
     "sass-loader": "^12.1.0",
     "ts-jest": "^27.0.3",
     "vue-jest": "^3.0.4"
-  },
-  "resolutions": {
-    "@babel/core": "7.13.15",
-    "@babel/preset-env": "7.13.15"
   }
 }
