@@ -1,0 +1,13 @@
+version: '3'
+services:
+  site:
+    container_name: simple_weather
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    environment:
+      API_BASE_URL: ${API_BASE_URL}
+    volumes:
+      - ./:/app
+    ports:
+      - 8080:80
