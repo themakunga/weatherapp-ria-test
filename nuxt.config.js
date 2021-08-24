@@ -45,11 +45,27 @@ export default {
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
     '@nuxtjs/toast',
+    '@nuxt/content',
   ],
-
+  middleware: [
+    'initialData',
+  ],
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    baseURL: process.env.API_BASE_URL || 'https://localhost:3000',
+    proxy: true,
+  },
+  proxy: {
+    '/static/': {
+      target: process.env.LOCAL_URL,
+      pathRewrite: { '^/static/': '' },
+      changeOrigin: true,
+    },
+
+    '/api/': {
+      target: process.env.API_BASE_URL,
+      pathRewrite: { '^/api/': '' },
+      changeOrigin: true,
+    },
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
