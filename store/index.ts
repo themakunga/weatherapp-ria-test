@@ -1,13 +1,15 @@
+/* eslint-disable no-shadow, no-param-reassign */
 import {
   GetterTree,
   ActionTree,
   MutationTree,
 } from 'vuex';
 
-import { ICity } from '~/interfaces';
+import { ICity, IWeatherCity, IPayload } from '~/interfaces';
 
 export const state = () => ({
   cities: [] as ICity[],
+  forecast: {} as IWeatherCity,
   defaultCities: [
     {
       city_id: 3451190,
@@ -44,16 +46,49 @@ export type RootState = ReturnType<typeof state>;
 export const getters: GetterTree<RootState, RootState> = {
   cities: (state) => (state.cities),
   defaultCities: (state) => (state.defaultCities),
+  forecast: (state) => (state.forecast),
 };
 
 export const mutations: MutationTree<RootState> = {
   SET_CITIES: (state, cities: ICity[]) => {
     state.cities = [...cities];
   },
+  SET_WEATHER: (state, payload: IPayload) => {
+    const { city, weather } = payload;
+    state.forecast = {
+      city_id: city.city_id,
+      coordinates: {
+        lat: city.lat,
+        lon: city.lon,
+      },
+      timezone: weather.timezone!,
+      current: {
+        sunrise: weather.current.sunrise,
+        sunset: weather.current.sunset,
+        temp: weather.current.temp,
+        feels_like: weather.current.feels_like,
+        presure: weather.current.presure,
+        humidity: weather.current.humidity,
+        uvi: weather.current.feels_like,
+        weather: weather.current.weather,
+      },
+      hourly: weather.hourly,
+      daily: weather.daily,
+    };
+  },
 };
 
 export const actions: ActionTree<RootState, RootState> = {
   async setCities({ commit }, cities: ICity[]) {
     commit('SET_CITIES', cities);
+  },
+  async getWeather({ commit }, city: ICity) {
+    const url = `https://api.openweathermap.org/data/2.5/onecall?appid=1f89da47fe4d0be6bbbf376af70bdb58&units=metric&exclude=minutely&lang=es&lat=${city.lat}&lon=${city.lon}`;
+    const { data } = await this.$axios.get(url);
+    const payload: IPayload = {
+      city,
+      weather: data,
+    };
+    commit('SET_WEATHER', payload);
   },
 };

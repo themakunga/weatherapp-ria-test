@@ -17,3 +17,4 @@ plugins:
 rules:
   import/no-unresolved: off
   import/extensions: off
+  camelcase: off

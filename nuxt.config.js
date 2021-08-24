@@ -47,9 +47,11 @@ export default {
     '@nuxtjs/toast',
     '@nuxt/content',
   ],
-  middleware: [
-    'initialData',
-  ],
+  router: {
+    middleware: [
+      'initialData',
+    ],
+  },
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     proxy: true,
