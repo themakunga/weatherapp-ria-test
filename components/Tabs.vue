@@ -3,8 +3,12 @@
     .tabs.is-boxed.is-fullwidth
       ul
         template(v-for="city in defaultCities")
-          li(:class="{ 'is-active': selectedPath == city.city_id }")
-            router-link(:to="'/'+city.city_id") {{city.city_name}}
+          template(v-if="selected == city.city_id")
+            li.is-active
+              a(@click="goto(city.city_id)") {{city.city_name}}
+          template(v-else)
+            li
+              a(@click="goto(city.city_id)") {{city.city_name}}
 </template>
 
 <script lang="ts">
@@ -17,11 +21,17 @@ export default Vue.extend({
     selectedPath: '',
   }),
   computed: {
-    ...mapGetters(['defaultCities']),
+    ...mapGetters(['defaultCities', 'selected']),
   },
-  mounted() {
-    const { path } = this.$route;
-    this.selectedPath = path;
+  created() {
+    const { params } = this.$route;
+    this.selectedPath = params.id;
+  },
+  methods: {
+    goto(id: number) {
+      this.$store.dispatch('setSelected', id);
+      this.$router.push(`/${id}`);
+    },
   },
 });
 </script>

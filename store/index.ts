@@ -10,6 +10,7 @@ import { ICity, IWeatherCity, IPayload } from '~/interfaces';
 export const state = () => ({
   cities: [] as ICity[],
   forecast: {} as IWeatherCity,
+  selected: 3451190 as number,
   defaultCities: [
     {
       city_id: 3451190,
@@ -47,11 +48,15 @@ export const getters: GetterTree<RootState, RootState> = {
   cities: (state) => (state.cities),
   defaultCities: (state) => (state.defaultCities),
   forecast: (state) => (state.forecast),
+  selected: (state) => (state.selected),
 };
 
 export const mutations: MutationTree<RootState> = {
   SET_CITIES: (state, cities: ICity[]) => {
     state.cities = [...cities];
+  },
+  SET_SELECTED: (state, id: number) => {
+    state.selected = id;
   },
   SET_WEATHER: (state, payload: IPayload) => {
     const { city, weather } = payload;
@@ -91,4 +96,7 @@ export const actions: ActionTree<RootState, RootState> = {
     };
     commit('SET_WEATHER', payload);
   },
+  setSelected({ commit }, id: number) {
+    commit('SET_SELECTED', id);
+  }
 };

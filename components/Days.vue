@@ -32,8 +32,10 @@ export default Vue.extend({
   data: () => ({
     days: [],
   }),
-  async mounted() {
-    this.days = this.forecast.slice(0, 5);
+  watch: {
+    async forecast() {
+      this.days = this.forecast.slice(0, 5);
+    },
   },
   methods: {
     comma(num: number) {
