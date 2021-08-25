@@ -1,5 +1,10 @@
 # weatherapp-ria-test
 
+
+## live preview
+
+you can find a live preview [here](https://weatherapp-ria-test.web.app/3451190) i recommend to use mobile version
+
 ## Build Setup
 
 ```bash
