@@ -1,4 +1,4 @@
-**/*.sw.js
+**/sw.js
 # Created by https://www.toptal.com/developers/gitignore/api/windows,linux,macos,node,nuxt,firebase,visualstudiocode,webstorm+all
 # Edit at https://www.toptal.com/developers/gitignore?templates=windows,linux,macos,node,nuxt,firebase,visualstudiocode,webstorm+all
 
