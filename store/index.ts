@@ -98,5 +98,5 @@ export const actions: ActionTree<RootState, RootState> = {
   },
   setSelected({ commit }, id: number) {
     commit('SET_SELECTED', id);
-  }
+  },
 };
