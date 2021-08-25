@@ -17,10 +17,6 @@ export default Vue.extend({
     Navbar,
     Tabs,
   },
-  async fetch() {
-    const { data } = await this.$axios.get('/static/cities.json');
-    this.$store.dispatch('setCities', data);
-  },
 });
 </script>
 

@@ -30,7 +30,6 @@ export default Vue.extend({
   methods: {
     goto(id: number) {
       this.$store.dispatch('setSelected', id);
-      this.$router.push(`/${id}`);
     },
   },
 });

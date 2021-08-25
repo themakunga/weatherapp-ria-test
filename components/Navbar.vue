@@ -51,7 +51,7 @@ export default Vue.extend({
     },
     goto(id: number) {
       this.closeNavbar();
-      this.$router.push(`/${id}`);
+      this.$store.dispatch('setSelected', id);
     },
   },
 });

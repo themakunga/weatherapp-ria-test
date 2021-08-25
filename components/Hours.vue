@@ -28,7 +28,7 @@ export default {
       return num.toFixed(1).toString().replace('.', ',');
     },
     getIcon(code: string) {
-      return `http://openweathermap.org/img/wn/${code}@2x.png`;
+      return `https://openweathermap.org/img/wn/${code}@2x.png`;
     },
     parseHour(dt: number, tz: string) {
       const d = new Date(new Date((dt * 1000)).toLocaleString('en-US', { timeZone: tz }));
