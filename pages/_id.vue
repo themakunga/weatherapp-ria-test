@@ -1,6 +1,7 @@
 <template lang="pug">
   div
     .container
+      span.is-size-6 {{dat.city_name}}, {{dat.country_full}}
       Hours(:forecast="forecast.hourly" :timezone="forecast.timezone")
       Days(:forecast="forecast.daily" :timezone="forecast.timezone")
 </template>

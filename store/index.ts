@@ -9,8 +9,10 @@ import { ICity, IWeatherCity, IPayload } from '~/interfaces';
 
 export const state = () => ({
   cities: [] as ICity[],
+  searchResult: [] as ICity[],
   forecast: {} as IWeatherCity,
   selected: 3451190 as number,
+  navbarActive: false as Boolean,
   defaultCities: [
     {
       city_id: 3451190,
@@ -49,11 +51,20 @@ export const getters: GetterTree<RootState, RootState> = {
   defaultCities: (state) => (state.defaultCities),
   forecast: (state) => (state.forecast),
   selected: (state) => (state.selected),
+  navbarActive: (state) => (state.navbarActive),
+  searchResult: (state) => (state.searchResult),
 };
 
 export const mutations: MutationTree<RootState> = {
   SET_CITIES: (state, cities: ICity[]) => {
     state.cities = [...cities];
+  },
+  TOGGLE_NAVBAR: (state, set: Boolean | null) => {
+    if (set !== null) {
+      state.navbarActive = set;
+    } else {
+      state.navbarActive = !state.navbarActive;
+    }
   },
   SET_SELECTED: (state, id: number) => {
     state.selected = id;
@@ -81,6 +92,9 @@ export const mutations: MutationTree<RootState> = {
       daily: weather.daily,
     };
   },
+  SET_SEARCH_RESULT: (state, payload: ICity[]) => {
+    state.searchResult = payload;
+  },
 };
 
 export const actions: ActionTree<RootState, RootState> = {
@@ -98,5 +112,14 @@ export const actions: ActionTree<RootState, RootState> = {
   },
   setSelected({ commit }, id: number) {
     commit('SET_SELECTED', id);
+  },
+  setNavbar({ commit }, set: Boolean) {
+    commit('TOGGLE_NAVBAR', set);
+  },
+  toggleNavbar({ commit }) {
+    commit('TOGGLE_NAVBAR', null);
+  },
+  setSearchResult({ commit }, payload: ICity[]) {
+    commit('SET_SEARCH_RESULT', payload);
   },
 };
