@@ -3,8 +3,14 @@
 </template>
 
 <script lang="ts">
-export default {
-};
+import Vue from 'vue';
+
+export default Vue.extend({
+  name: 'index',
+  mounted() {
+    this.$router.push('/3451190');
+  },
+});
 </script>
 
 <style lang="css" scoped>

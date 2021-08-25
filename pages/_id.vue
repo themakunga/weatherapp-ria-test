@@ -24,7 +24,7 @@ export default Vue.extend({
     Hours,
     Days,
   },
-  async mounted() {
+  async created() {
     const cod = this.$route.params.id;
     this.dat = this.cities.find((v: ICity) => (v.city_id === parseInt(cod, 10)));
     this.$store.dispatch('getWeather', this.dat);

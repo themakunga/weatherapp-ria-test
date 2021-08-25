@@ -21,7 +21,9 @@
 </template>
 
 <script lang="ts">
-export default {
+import Vue from 'vue';
+
+export default Vue.extend({
   name: 'daily_forecast',
   props: [
     'forecast',
@@ -30,10 +32,8 @@ export default {
   data: () => ({
     days: [],
   }),
-  watch: {
-    forecast() {
-      this.days = this.forecast.slice(0, 5);
-    },
+  async mounted() {
+    this.days = this.forecast.slice(0, 5);
   },
   methods: {
     comma(num: number) {
@@ -70,7 +70,7 @@ export default {
       return `${days[d.getDay()]} ${d.getDate()} ${months[d.getMonth()]}`;
     },
   },
-};
+});
 </script>
 
 <style lang="css" scoped>
