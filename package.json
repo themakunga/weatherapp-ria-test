@@ -21,7 +21,7 @@
     "core-js": "^3.16.4",
     "dotenv": "^10.0.0",
     "nuxt": "^2.15.7",
-    "nuxt-buefy": "^0.4.9",
+    "nuxt-buefy": "^0.4.10",
     "nuxt-vuex-localstorage": "^1.3.0",
     "vue": "^2.6.14",
     "vuex": "^3.6.2",
